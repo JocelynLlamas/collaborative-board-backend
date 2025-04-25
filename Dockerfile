@@ -6,10 +6,10 @@ EXPOSE 80
 # Usar la imagen base de .NET SDK para la construcción
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["CollaborativeBoardApi/CollaborativeBoardApi.csproj", "./"]
+COPY ["CollaborativeBoardApi.csproj", "CollaborativeBoardApi/"]
 RUN dotnet restore "CollaborativeBoardApi/CollaborativeBoardApi.csproj"
-COPY . .
 WORKDIR "/src/CollaborativeBoardApi"
+COPY . .
 RUN dotnet build "CollaborativeBoardApi.csproj" -c Release -o /app/build
 
 # Publicar la aplicación
