@@ -5,6 +5,18 @@ using Microsoft.Extensions.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.WebHost.ConfigureKestrel(options =>
+{
+    // Escuchar en el puerto HTTP 8080
+    options.ListenAnyIP(8080); // HTTP
+
+    // Escuchar en el puerto HTTPS 443
+    options.ListenAnyIP(443, listenOptions =>
+    {
+        listenOptions.UseHttps(); // HTTPS
+    });
+});
+
 // Agregar controladores
 builder.Services.AddControllers();
 
@@ -25,7 +37,7 @@ builder.Services.AddCors(options =>
     });
 });
 
-// Agregar documentación de API
+// Agregar documentaciï¿½n de API
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

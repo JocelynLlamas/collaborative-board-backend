@@ -1,7 +1,7 @@
 # Usar una imagen base de ASP.NET para producción
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 WORKDIR /app
-EXPOSE 80
+EXPOSE 80 443
 
 # Usar la imagen base de .NET SDK para la construcción
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
